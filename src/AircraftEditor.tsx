@@ -4,7 +4,6 @@ import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col'
 import {PylonData, PylonEditor} from './PylonEditor'
-import {Measure, Mass, pounds} from 'safe-units'
 
 interface AircraftEditorProps {
   aircraft: AircraftData,
@@ -38,9 +37,9 @@ function AircraftEnvironment() {
 }
 
 function AircraftConfiguration({aircraft, setAircraft}: AircraftEditorProps) {
-  let fuelFrac: number = aircraft.fuel.over(aircraftFuelMax(aircraft)).value
+  let fuelFrac: number = aircraft.fuel / aircraftFuelMax(aircraft)
 
-  let setFuelMass = (frac: number) => setAircraft(Object.assign({}, aircraft, {fuel: aircraftFuelMax(aircraft).scale(frac)}))
+  let setFuelMass = (frac: number) => setAircraft(Object.assign({}, aircraft, {fuel: aircraftFuelMax(aircraft) * frac}))
 
   return <>
     <Row><h3>Aircraft configuration</h3></Row>
@@ -55,7 +54,7 @@ function AircraftConfiguration({aircraft, setAircraft}: AircraftEditorProps) {
         <Form.Group>
           <Form.Label>Fuel amount</Form.Label>
           <input type="range" min="0" max="1" step="0.01" value={fuelFrac} onChange={e => setFuelMass(parseFloat(e.target.value))}/><br/>
-          {Math.round(fuelFrac * 100).toFixed(0)}% ({aircraft.fuel.in(pounds, {formatValue: (x:number) => x.toFixed(0)})})
+          {Math.round(fuelFrac * 100).toFixed(0)}% {aircraft.fuel.toFixed(0)} lbs
         </Form.Group>
       </Col>
     </Row>
@@ -65,15 +64,15 @@ function AircraftConfiguration({aircraft, setAircraft}: AircraftEditorProps) {
 export interface AircraftData {
   fcrInstalled: boolean,
   iafsInstalled: boolean,
-  fuel: Mass,
+  fuel: number,
   pylon1: PylonData,
   pylon2: PylonData,
   pylon3: PylonData,
   pylon4: PylonData
 }
 
-function aircraftFuelMax(aircraft: AircraftData): Mass {
-  return aircraft.iafsInstalled ? Measure.of(9999,pounds) : Measure.of(5555,pounds)
+function aircraftFuelMax(aircraft: AircraftData): number {
+  return aircraft.iafsInstalled ? 9999 : 5555
 }
 
 function aircraftRoundCount(aircraft: AircraftData): number {
@@ -83,7 +82,7 @@ function aircraftRoundCount(aircraft: AircraftData): number {
 export function validateAircraft(aircraft: AircraftData): AircraftData {
   const fuelMax = aircraftFuelMax(aircraft)
 
-  if (aircraft.fuel.gt(fuelMax)) {
+  if (aircraft.fuel > fuelMax) {
     return Object.assign({},aircraft, {fuel: fuelMax})
   } else {
     return aircraft

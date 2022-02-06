@@ -1,15 +1,14 @@
 import Container from 'react-bootstrap/Container'
 import Table from 'react-bootstrap/Table'
 import Row from 'react-bootstrap/Row'
-import { Mass, pounds } from 'safe-units'
 import { AircraftPerformance } from './perfCalcs'
 
 function showPercentage(percentage:number):string {
   return (percentage * 100).toFixed(0)+"%"
 }
 
-function showPounds(mass:Mass):string {
-  return mass.in(pounds, {formatValue: (x:number) => x.toFixed(0)})
+function showPounds(mass:number):string {
+  return mass.toFixed(0) + " lbs"
 }
 
 export function AircraftPerformanceView({performance}: {performance:AircraftPerformance}) {
