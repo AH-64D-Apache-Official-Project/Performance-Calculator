@@ -1,31 +1,6 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
-
-export type PylonData = PylonArmamentNone | PylonArmamentHellfire | PylonArmamentRocket
-
-export interface PylonArmamentNone {
-  type: "none"
-}
-
-export interface PylonArmamentHellfire {
-  type: "hellfire",
-  ul: HellfireType,
-  ur: HellfireType,
-  ll: HellfireType,
-  lr: HellfireType
-}
-
-export type HellfireType = void | "AGM-114K" | "AGM-114L"
-
-export interface PylonArmamentRocket {
-  type: "rocket",
-  zoneA: RocketType,
-  zoneB: RocketType,
-  zoneE: RocketType
-}
-
-export type RocketType = void | "M229"
-
+import {PylonData, RocketType, HellfireType} from './types'
 interface PylonEditorProps {
     pylon: PylonData,
     setPylon: (pylon: PylonData) => void

@@ -2,6 +2,7 @@ import Container from 'react-bootstrap/Container'
 import Table from 'react-bootstrap/Table'
 import Row from 'react-bootstrap/Row'
 import { AircraftPerformance } from './perfCalcs'
+import { KG_TO_LBS } from './constants'
 
 function showPercentage(percentage:number):string {
   return (percentage * 100).toFixed(0)+"%"
@@ -14,7 +15,7 @@ function showPounds(mass:number):string {
 export function AircraftPerformanceView({performance}: {performance:AircraftPerformance}) {
   return <Container>
     <Row>
-      <p><b>Gross weight:</b> {showPounds(performance.gwt)}</p>
+      <p><b>Gross weight:</b> {showPounds(performance.gwt * KG_TO_LBS)}</p>
     </Row>
     <Row>
       <Table>
@@ -33,7 +34,7 @@ export function AircraftPerformanceView({performance}: {performance:AircraftPerf
           </tr>
           <tr>
             <td>Continuous Torque Available</td>
-            <td>{showPercentage(performance.contTorqueAvailable.se)}</td>
+            <td>{showPercentage(performance.contTorqueAvailable.de)}</td>
             <td>{showPercentage(performance.contTorqueAvailable.se)}</td>
           </tr>
           <tr><td style={{height: "20px"}}>{' '}</td></tr>

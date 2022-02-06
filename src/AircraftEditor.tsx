@@ -3,37 +3,14 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col'
-import {PylonData, PylonEditor} from './PylonEditor'
+import {PylonEditor} from './PylonEditor'
+import {AircraftData} from './types'
+import * as perfData from './perfData'
+import { KG_TO_LBS } from './constants';
 
 interface AircraftEditorProps {
   aircraft: AircraftData,
   setAircraft: (ac:AircraftData) => void
-}
-
-function AircraftEnvironment() {
-  return <>
-    <Row><h3>Environment</h3></Row>
-    <Row>
-      <Col sm={6}>
-        <Form.Group>
-          <Form.Label>Temperature</Form.Label>
-          <div className="input-group mb-3">
-              <input type="text" className="form-control" disabled value="20"/>
-              <span className="input-group-text">{'\u00b0'}C</span>
-          </div>
-        </Form.Group>
-      </Col>
-      <Col sm={6}>
-        <Form.Group>
-          <Form.Label>Altitude</Form.Label>
-          <div className="input-group mb-3">
-              <input type="text" className="form-control" disabled value="0"/>
-              <span className="input-group-text">ft</span>
-          </div>
-        </Form.Group>
-      </Col>
-    </Row>
-  </>
 }
 
 function AircraftConfiguration({aircraft, setAircraft}: AircraftEditorProps) {
@@ -54,25 +31,17 @@ function AircraftConfiguration({aircraft, setAircraft}: AircraftEditorProps) {
         <Form.Group>
           <Form.Label>Fuel amount</Form.Label>
           <input type="range" min="0" max="1" step="0.01" value={fuelFrac} onChange={e => setFuelMass(parseFloat(e.target.value))}/><br/>
-          {Math.round(fuelFrac * 100).toFixed(0)}% {aircraft.fuel.toFixed(0)} lbs
+          {Math.round(fuelFrac * 100).toFixed(0)}% {(aircraft.fuel * KG_TO_LBS).toFixed(0)} lbs
         </Form.Group>
       </Col>
     </Row>
   </>
 }
 
-export interface AircraftData {
-  fcrInstalled: boolean,
-  iafsInstalled: boolean,
-  fuel: number,
-  pylon1: PylonData,
-  pylon2: PylonData,
-  pylon3: PylonData,
-  pylon4: PylonData
-}
-
 function aircraftFuelMax(aircraft: AircraftData): number {
-  return aircraft.iafsInstalled ? 9999 : 5555
+  return aircraft.iafsInstalled
+    ? perfData.maxFwdFuelMass + perfData.maxAftFuelMass + perfData.maxCtrFuelMass
+    : perfData.maxFwdFuelMass + perfData.maxAftFuelMass
 }
 
 function aircraftRoundCount(aircraft: AircraftData): number {
@@ -130,7 +99,6 @@ function AircraftWeapons({aircraft, setAircraft}: AircraftEditorProps) {
 export function AircraftEditor({aircraft, setAircraft}: AircraftEditorProps) {
   return (
     <Container>
-      <AircraftEnvironment/>
       <AircraftConfiguration aircraft={aircraft} setAircraft={setAircraft}/>
       <AircraftWeapons aircraft={aircraft} setAircraft={setAircraft}/>
     </Container>

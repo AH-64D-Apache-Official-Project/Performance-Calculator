@@ -1,11 +1,5 @@
 export function clamp(min:number, max:number, val:number): number {
-    if (val < min) {
-        return min;
-    } else if (val > max) {
-        return max;
-    } else {
-        return val
-    }
+    return Math.min(max, Math.max(min, val))
 }
 
 function ensureKeysInAscendingOrder(keys: Array<number>) {
