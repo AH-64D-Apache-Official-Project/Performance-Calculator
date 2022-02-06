@@ -2,15 +2,13 @@ import React from 'react';
 
 import './App.css';
 import {AircraftData, AircraftEditor, validateAircraft} from './AircraftEditor'
-import {Measure, pounds} from 'safe-units'
-import { constants } from 'buffer';
 import { calculatePerformance } from './perfCalcs';
 import { AircraftPerformanceView } from './PerformanceDisplay';
 
 const defaultAircraft : AircraftData = {
   fcrInstalled: true,
   iafsInstalled: true,
-  fuel: Measure.of(2000,pounds),
+  fuel: 2000,
   pylon1: {type: "none"},
   pylon2: {type: "none"},
   pylon3: {type: "none"},
