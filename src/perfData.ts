@@ -1,4 +1,4 @@
-import {InterpTable, InterpTable2D, linearInterp} from './util'
+import {InterpTable, InterpTable2D} from './util'
 //Empty masses
 export const emptyMassFCR         = 6609;    //kg
 export const emptyMassNonFCR      = 6314;    //kg

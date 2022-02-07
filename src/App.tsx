@@ -6,6 +6,9 @@ import { calculatePerformance } from './perfCalcs';
 import { AircraftPerformanceView } from './PerformanceDisplay';
 import { AircraftData,  defaultAircraftEnvironment } from './types';
 import { EnvironmentEditor } from './EnvironmentEditor';
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 const defaultAircraft : AircraftData = {
   fcrInstalled: true,
@@ -24,9 +27,17 @@ function App() {
   const perfData = calculatePerformance(aircraft, environent)
   return (
     <div className="App">
-      <EnvironmentEditor environment={environent} setEnvironment={setEnvironent}/>
-      <AircraftEditor aircraft={aircraft} setAircraft={(ac:AircraftData) => setAircraft(validateAircraft(ac))}/>
-      <AircraftPerformanceView performance={perfData}/>
+      <Container>
+        <Row>
+          <Col md="7">
+            <EnvironmentEditor environment={environent} setEnvironment={setEnvironent}/>
+            <AircraftEditor aircraft={aircraft} setAircraft={(ac:AircraftData) => setAircraft(validateAircraft(ac))}/>
+          </Col>
+          <Col>
+            <AircraftPerformanceView performance={perfData}/>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }

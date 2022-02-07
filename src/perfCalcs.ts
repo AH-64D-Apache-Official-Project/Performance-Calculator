@@ -1,6 +1,6 @@
 import './perfCalcs'
 import * as perfData from './perfData';
-import { InterpTable, clamp } from './util';
+import { clamp } from './util';
 import { AircraftData, AircraftEnvironment, HellfireType, PylonData, RocketType } from './types';
 export interface DESE<T> {
   de: T,
@@ -20,8 +20,6 @@ export interface AircraftPerformance {
   goNoGoTorque: IGEOGE<number>,
   predictedHoverTorque: IGEOGE<number>
 }
-
-const table = new InterpTable([0,1000,10000], [0,50,60])
 
 const rocketPodWeight    = 0; //2.07;  //39.4kg / 19 rockets
 const hellfireRackWeight = 0; //16.22; //64.9kg / 4 missiles

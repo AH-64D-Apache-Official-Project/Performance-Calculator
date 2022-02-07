@@ -1,6 +1,5 @@
-import Container from 'react-bootstrap/Container'
 import Table from 'react-bootstrap/Table'
-import Row from 'react-bootstrap/Row'
+import Alert from 'react-bootstrap/Alert'
 import { AircraftPerformance } from './perfCalcs'
 import { KG_TO_LBS } from './constants'
 
@@ -13,11 +12,9 @@ function showPounds(mass:number):string {
 }
 
 export function AircraftPerformanceView({performance}: {performance:AircraftPerformance}) {
-  return <Container>
-    <Row>
+  return <Alert className="performance-results">
+      <h3>Aircraft performance</h3>
       <p><b>Gross weight:</b> {showPounds(performance.gwt * KG_TO_LBS)}</p>
-    </Row>
-    <Row>
       <Table>
         <thead>
           <tr>
@@ -67,6 +64,5 @@ export function AircraftPerformanceView({performance}: {performance:AircraftPerf
           </tr>
         </tbody>
       </Table>
-    </Row>
-  </Container>
+    </Alert>
 }

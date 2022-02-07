@@ -2,7 +2,6 @@ import { AircraftEnvironment } from "./types"
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col'
-import Container from 'react-bootstrap/Container'
 
 interface EnvironmentEditorProps {
     environment: AircraftEnvironment,
@@ -10,7 +9,7 @@ interface EnvironmentEditorProps {
   }
 
 export function EnvironmentEditor(props:EnvironmentEditorProps) {
-    return <Container>
+    return <>
       <Row><h3>Environment</h3></Row>
       <Row>
         <Col sm={6}>
@@ -32,5 +31,5 @@ export function EnvironmentEditor(props:EnvironmentEditorProps) {
           </Form.Group>
         </Col>
       </Row>
-    </Container>
+    </>
   }

@@ -1,5 +1,4 @@
 import React from 'react'
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col'
@@ -61,7 +60,7 @@ export function validateAircraft(aircraft: AircraftData): AircraftData {
 function AircraftWeapons({aircraft, setAircraft}: AircraftEditorProps) {
   let roundCount = aircraftRoundCount(aircraft)
 
-  return <Container>
+  return <>
     <Row><h3>Weapon configuration</h3></Row>
     <Row>
       <Col sm={6}>
@@ -75,34 +74,31 @@ function AircraftWeapons({aircraft, setAircraft}: AircraftEditorProps) {
       </Col>
     </Row>
     <Row>
-      <Col sm={3}>
+      <Col sm={3} className="pylon-col">
         <h5>Pylon 1</h5>
         <PylonEditor pylon={aircraft.pylon1} setPylon={pylon => setAircraft(Object.assign({}, aircraft, {pylon1: pylon}))}/>
       </Col>
-      <Col sm={3}>
+      <Col sm={3} className="pylon-col">
         <h5>Pylon 1</h5>
         <PylonEditor pylon={aircraft.pylon2} setPylon={pylon => setAircraft(Object.assign({}, aircraft, {pylon2: pylon}))}/>
       </Col>
-      <Col sm={3}>
+      <Col sm={3} className="pylon-col">
         <h5>Pylon 3</h5>
         <PylonEditor pylon={aircraft.pylon3} setPylon={pylon => setAircraft(Object.assign({}, aircraft, {pylon3: pylon}))}/>
       </Col>
-      <Col sm={3}>
+      <Col sm={3} className="pylon-col">
         <h5>Pylon 4</h5>
         <PylonEditor pylon={aircraft.pylon4} setPylon={pylon => setAircraft(Object.assign({}, aircraft, {pylon4: pylon}))}/>
       </Col>
     </Row>
-    <Row><h3>Aircraft performance</h3></Row>
-  </Container>
+  </>
 }
 
 export function AircraftEditor({aircraft, setAircraft}: AircraftEditorProps) {
-  return (
-    <Container>
+  return <>
       <AircraftConfiguration aircraft={aircraft} setAircraft={setAircraft}/>
       <AircraftWeapons aircraft={aircraft} setAircraft={setAircraft}/>
-    </Container>
-  )
+    </>
 }
 
 export default AircraftEditor
