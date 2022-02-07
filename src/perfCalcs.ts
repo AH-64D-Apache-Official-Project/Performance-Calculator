@@ -23,17 +23,17 @@ export interface AircraftPerformance {
 
 const table = new InterpTable([0,1000,10000], [0,50,60])
 
-const rocketPodWeight    = 39.4;
-const hellfireRackWeight = 64.9;
+const rocketPodWeight    = 0; //2.07;  //39.4kg / 19 rockets
+const hellfireRackWeight = 0; //16.22; //64.9kg / 4 missiles
 
 function rocketWeight(type: RocketType): number {
     if (typeof type === "undefined") return 0
-    return 10.433;
+    return 12.50;
 }
 
 function hellfireWeight(type: HellfireType): number {
     if (typeof type === "undefined") return 0
-    return 46.774;
+    return 62.94;
 }
 
 function pylonWeight(pylon: PylonData): number {
@@ -77,7 +77,7 @@ export function calculatePerformance(aircraft: AircraftData, environment: Aircra
 
   return {
     maxTorqueAvailable: {de: maxTqDE, se: maxTqSE},
-    contTorqueAvailable: {de: clamp(0, 1, maxTqDE), se: clamp(0, 1, maxTqSE)},
+    contTorqueAvailable: {de: clamp(0, 1, maxTqDE), se: clamp(0, 1.10, maxTqSE)},
     maxGwt: {ige: maxGwtIGE, oge: maxGwtOGE},
     gwt: grossWgt,
     goNoGoTorque: {ige: goNoGoTqIGE, oge: goNoGoTqOGE},

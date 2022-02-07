@@ -25,15 +25,23 @@ function PylonType({pylon, setPylon}: PylonEditorProps) {
 function RocketTypeSelect({rocket,setRocket}: {rocket: RocketType, setRocket: ((x:RocketType) => void)}) {
   return <Form.Select value={rocket as string} onChange={e => setRocket(e.target.value as any as RocketType)}>
     <option value="">None</option>
-    <option>M229</option>
+    <option>M151 HEDP "10LB"</option>
+    <option>M229 HDEP "17LB"</option>
+    <option>M255A1 FLECHETTE</option>
+    <option>M261 MPSM</option>
+    <option>M257 ILLUM</option>
   </Form.Select>
 }
 
 function HellfireTypeSelect({hellfire,setHellfire}: {hellfire: HellfireType, setHellfire: ((x:HellfireType) => void)}) {
   return <Form.Select value={hellfire as string} onChange={e => setHellfire(e.target.value as any as HellfireType)}>
     <option value={undefined}>None</option>
+    <option>AGM-114A</option>
+    <option>AGM-114C</option>
     <option>AGM-114K</option>
     <option>AGM-114L</option>
+    <option>AGM-114M</option>
+    <option>AGM-114N</option>
   </Form.Select>
 }
   
