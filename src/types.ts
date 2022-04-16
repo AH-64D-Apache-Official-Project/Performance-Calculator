@@ -16,22 +16,22 @@ export interface PylonArmamentNone {
 
 export interface PylonArmamentHellfire {
     type: "hellfire",
-    ul: HellfireType,
-    ur: HellfireType,
-    ll: HellfireType,
-    lr: HellfireType
+    ul?: HellfireType,
+    ur?: HellfireType,
+    ll?: HellfireType,
+    lr?: HellfireType
 }
 
-export type HellfireType = void | "AGM-114A" | "AGM-114C" | "AGM-114K" | "AGM-114L" | "AGM-114M" | "AGM-114N" 
+export type HellfireType = "AGM-114A" | "AGM-114C" | "AGM-114K" | "AGM-114L" | "AGM-114M" | "AGM-114N" 
 
 export interface PylonArmamentRocket {
     type: "rocket",
-    zoneA: RocketType,
-    zoneB: RocketType,
-    zoneE: RocketType
+    zoneA?: RocketType,
+    zoneB?: RocketType,
+    zoneE?: RocketType
 }
 
-export type RocketType = void | "M151 10LB" | "M229 17LB" | "M251 FLEC" | "M261 MPSM" | "M257 ILUM"
+export type RocketType = "M151 10LB" | "M229 17LB" | "M251 FLEC" | "M261 MPSM" | "M257 ILUM"
 
 export interface AircraftEnvironment {
     temp: number,

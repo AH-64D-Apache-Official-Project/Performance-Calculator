@@ -7,7 +7,7 @@ import {AircraftData} from './types'
 import * as perfData from './perfData'
 import { KG_TO_LBS } from './constants';
 
-interface AircraftEditorProps {
+export interface AircraftEditorProps {
   aircraft: AircraftData,
   setAircraft: (ac:AircraftData) => void
 }
@@ -79,7 +79,7 @@ function AircraftWeapons({aircraft, setAircraft}: AircraftEditorProps) {
         <PylonEditor pylon={aircraft.pylon1} setPylon={pylon => setAircraft(Object.assign({}, aircraft, {pylon1: pylon}))}/>
       </Col>
       <Col sm={3} className="pylon-col">
-        <h5>Pylon 1</h5>
+        <h5>Pylon 2</h5>
         <PylonEditor pylon={aircraft.pylon2} setPylon={pylon => setAircraft(Object.assign({}, aircraft, {pylon2: pylon}))}/>
       </Col>
       <Col sm={3} className="pylon-col">

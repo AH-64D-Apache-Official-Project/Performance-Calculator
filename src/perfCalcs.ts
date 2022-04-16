@@ -24,12 +24,12 @@ export interface AircraftPerformance {
 const rocketPodWeight    = 0; //2.07;  //39.4kg / 19 rockets
 const hellfireRackWeight = 0; //16.22; //64.9kg / 4 missiles
 
-function rocketWeight(type: RocketType): number {
+function rocketWeight(type: RocketType | undefined): number {
     if (typeof type === "undefined") return 0
     return 12.50;
 }
 
-function hellfireWeight(type: HellfireType): number {
+function hellfireWeight(type: HellfireType | undefined): number {
     if (typeof type === "undefined") return 0
     return 62.94;
 }
