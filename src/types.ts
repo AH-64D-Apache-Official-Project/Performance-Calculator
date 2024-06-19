@@ -8,7 +8,7 @@ export interface AircraftData {
     pylon4: PylonData
 }
 
-export type PylonData = PylonArmamentNone | PylonArmamentHellfire | PylonArmamentRocket
+export type PylonData = PylonArmamentNone | PylonArmamentHellfire | PylonArmamentRocket | PylonAuxilaryTank
 
 export interface PylonArmamentNone {
     type: "none"
@@ -32,6 +32,10 @@ export interface PylonArmamentRocket {
 }
 
 export type RocketType = "M151 10LB" | "M229 17LB" | "M251 FLEC" | "M261 MPSM" | "M257 ILUM"
+
+export interface PylonAuxilaryTank {
+    type: "230 Gal"
+}
 
 export interface AircraftEnvironment {
     temp: number,

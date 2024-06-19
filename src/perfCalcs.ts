@@ -23,6 +23,7 @@ export interface AircraftPerformance {
 
 const rocketPodWeight    = 0; //2.07;  //39.4kg / 19 rockets
 const hellfireRackWeight = 0; //16.22; //64.9kg / 4 missiles
+const auxilaryTankWeight = 0;
 
 function rocketWeight(type: RocketType | undefined): number {
     if (typeof type === "undefined") return 0
@@ -46,6 +47,7 @@ function pylonWeight(pylon: PylonData): number {
       + rocketWeight(pylon.zoneA) * 12
       + rocketWeight(pylon.zoneB) * 4
       + rocketWeight(pylon.zoneE) * 3
+    case "230 Gal": return auxilaryTankWeight
   }
 }
 

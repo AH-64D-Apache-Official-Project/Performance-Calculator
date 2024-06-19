@@ -10,6 +10,7 @@ function pylonDefaultValue(typ: string): PylonData {
   switch (typ) {
     case "rocket": return {type: "rocket", zoneA: undefined, zoneB: undefined, zoneE: undefined};
     case "hellfire": return {type: "hellfire", ul: undefined, ur: undefined, ll:undefined, lr:undefined};
+    case "230 Gal": return {type: "230 Gal"}
     default: return {type: "none"};
   }
 }
@@ -19,6 +20,7 @@ function PylonType({pylon, setPylon}: PylonEditorProps) {
     <option value="none">None</option>
     <option value="rocket">Rocket</option>
     <option value="hellfire">Hellfire</option>
+    <option value="230 Gal">Aux Tank</option>
   </Form.Select>
 }
 
@@ -61,5 +63,6 @@ export function PylonEditor({pylon,setPylon}: PylonEditorProps) {
         <HellfireTypeSelect hellfire={pylon.ul} setHellfire={hellfire => setPylon(Object.assign({},pylon,{ul: hellfire}))}/>
         <HellfireTypeSelect hellfire={pylon.ur} setHellfire={hellfire => setPylon(Object.assign({},pylon,{ur: hellfire}))}/>
       </>
+      case "230 Gal": return <PylonType pylon={pylon} setPylon={setPylon}/>
   }
 }

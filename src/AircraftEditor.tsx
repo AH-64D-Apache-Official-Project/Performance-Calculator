@@ -3,7 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col'
 import {PylonEditor} from './PylonEditor'
-import {AircraftData} from './types'
+import {AircraftData, PylonData} from './types'
 import * as perfData from './perfData'
 import { KG_TO_LBS } from './constants';
 
@@ -38,9 +38,21 @@ function AircraftConfiguration({aircraft, setAircraft}: AircraftEditorProps) {
 }
 
 function aircraftFuelMax(aircraft: AircraftData): number {
-  return aircraft.iafsInstalled
-    ? perfData.maxFwdFuelMass + perfData.maxAftFuelMass + perfData.maxCtrFuelMass
-    : perfData.maxFwdFuelMass + perfData.maxAftFuelMass
+  let fuel = 0
+  function checkPylon (pylon: PylonData) {
+    if (pylon.type == "230 Gal") {
+      fuel += perfData.maxAuxTankMass
+    }
+  }
+  fuel += perfData.maxFwdFuelMass + perfData.maxAftFuelMass
+  if (aircraft.iafsInstalled) {
+    fuel += perfData.maxCtrFuelMass
+  }
+  checkPylon(aircraft.pylon1)
+  checkPylon(aircraft.pylon2)
+  checkPylon(aircraft.pylon3)
+  checkPylon(aircraft.pylon4)
+  return fuel
 }
 
 function aircraftRoundCount(aircraft: AircraftData): number {

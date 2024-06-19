@@ -9,6 +9,7 @@ export const initFuelFracNoRobbie = 0.22;   //%
 export const maxFwdFuelMass       = 473;  //kg
 export const maxCtrFuelMass       = 301;  //kg
 export const maxAftFuelMass       = 669;  //kg
+export const maxAuxTankMass       = 669;  //kg
 
 export const maxTqDE = new InterpTable2D(
   [-40,-20,0,20,40],
